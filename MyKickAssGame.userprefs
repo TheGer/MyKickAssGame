@@ -1,8 +1,8 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\StickmanController.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\stickmanWave.js">
     <Files>
-      <File FileName="Assets\StickmanController.js" Line="13" Column="39" />
+      <File FileName="Assets\stickmanWave.js" Line="8" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
