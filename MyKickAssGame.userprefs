@@ -1,8 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\stickmanWave.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\obstacleGenerator.js">
     <Files>
-      <File FileName="Assets\stickmanWave.js" Line="8" Column="1" />
+      <File FileName="Assets\obstacleController.js" Line="11" Column="2" />
+      <File FileName="Assets\obstacleGenerator.js" Line="11" Column="28" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
