@@ -6,8 +6,12 @@ var stickmanLives:int=3;
 
 var stickmanPicture:Texture;
 
+var stickmanBullet:Rigidbody;
+
+static var score:int=0;
+
 //can tell if the guy is on the ground or not
-var onGround:boolean=true;
+private var onGround:boolean=true;
 //http://L047-T:89
 function OnTriggerExit(theotherbox:Collider)
 {
@@ -42,6 +46,17 @@ function OnTriggerEnter(theotherbox:Collider){
 		//destroy the obstacle
 		Destroy(theotherbox.gameObject);
 	}
+	
+	if (theotherbox.tag == "health")
+	{
+		//max lives the stickman can have is 3
+		if (stickmanLives < 3)
+		{
+			stickmanLives++;
+		}
+		Destroy(theotherbox.gameObject);
+	
+	}
 }
 
 
@@ -65,7 +80,7 @@ function OnGUI() {
 	//using the resolution, going to the other side of the screen
 	GUI.Label(Rect(Screen.width-150,0,150,20),"Other side of screen");
 	
-	//this is a for loop
+	//this is a for loop showing a picture for every life
 	for(var counter=0;counter<stickmanLives;counter++)
 	{
 		//draw the picture
@@ -76,8 +91,8 @@ function OnGUI() {
 		GUI.DrawTexture(Rect(spacing,60,25,25),stickmanPicture,ScaleMode.ScaleToFit,true);
 	
 	}
-	
-	
+	//this is the score showing how many boxes I have destroyed
+	GUI.Label(Rect(0,80,150,20),"Score: "+score);
 }
 
 
@@ -112,15 +127,40 @@ function Update () {
 	if (Input.GetKey(KeyCode.RightArrow)) {
 		transform.Translate(Vector3.right * stickmanSpeed * Time.deltaTime);
 	}
-	
+	//jump
 	if (Input.GetKeyDown(KeyCode.Space))
 	{
 		//code that happens when I press space
 		if (onGround == true)
 		{
 			//jump
-			transform.Translate(Vector3.up * 5 * Time.deltaTime);
+			transform.Translate(Vector3.up * 200 * Time.deltaTime);
 		}
 	}
+	//shoot is the left ctrl key
+	if (Input.GetKeyDown(KeyCode.LeftControl))
+	{
+		var xposition:float=0;
+		var yposition:float=0;
+		var zposition:float=0;
+		
+		//x position of the stickman
+		xposition = transform.position.x;
+		
+		//y position of the stickman
+		yposition = transform.position.y - 0.5;
+		
+		//z position of the stickman
+		zposition = transform.position.z;
+		
+		//where I'm shooting the bullet from
+		var bulletShootingPosition:Vector3;
+		
+		bulletShootingPosition = Vector3(xposition,yposition,zposition);
+		
+		Instantiate(stickmanBullet,bulletShootingPosition,transform.rotation);
+	
+	}
+	
 
 }
