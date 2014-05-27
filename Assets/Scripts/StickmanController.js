@@ -8,6 +8,8 @@ var stickmanPicture:Texture;
 
 var stickmanBullet:Rigidbody;
 
+var currentPlatform:Collider;
+
 static var score:int=0;
 
 //can tell if the guy is on the ground or not
@@ -26,6 +28,8 @@ function OnTriggerStay(theotherbox:Collider)
 	if (theotherbox.tag == "ground")
 		{
 			onGround=true;
+	
+			currentPlatform = theotherbox;
 		}
 		
 }
@@ -37,12 +41,16 @@ function OnTriggerEnter(theotherbox:Collider){
 	{
 		//what happens when the object hits the ground
 		onGround = true;
+		currentPlatform = theotherbox;
+		//hack not to fall through the side of the game
+		transform.position.y = currentPlatform.gameObject.transform.position.y+2.5;
+		
 	}
 
 	//only trigger when hit by obstacle
 	if (theotherbox.tag == "obstacle") {
 		//this is the code that happens when i get hit
-		stickmanLives--;
+		//stickmanLives--;
 		//destroy the obstacle
 		Destroy(theotherbox.gameObject);
 	}
@@ -103,7 +111,14 @@ function Start () {
 function Update () {
 	//this will write stickman on ground true/false in 
 	//the console:
-	Debug.Log("Stickman on Ground: "+onGround);
+	//Debug.Log("Stickman on Ground: "+onGround);
+	
+	
+	
+	
+	
+	
+	Camera.main.transform.position.x = transform.position.x;
 	
 	//if I run out of lives
 	if (stickmanLives <= 0)
@@ -113,7 +128,7 @@ function Update () {
 	}
 	
 	//fake gravity
-	if (transform.position.y > -0.6543808)
+	if (!onGround)
 	{
 		transform.Translate(Vector3.down * 5 * Time.deltaTime);
 	}

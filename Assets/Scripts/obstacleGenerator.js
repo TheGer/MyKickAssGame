@@ -29,7 +29,7 @@ function createObstacle()
 		obstacleChoice = Random.Range(0,3);
 		//random value between 0 and 2
 		//output the value of obstacle choice
-		Debug.Log(obstacleChoice);
+		//Debug.Log(obstacleChoice);
 		//if the value is 1 do the red cube
 		if (obstacleChoice == 0)
 		{
@@ -52,7 +52,7 @@ function createObstacle()
 		//waits for a random time between 0.5 and 2.0
 		yield WaitForSeconds(timeGap);
 		//output the generated time gap in the console
-		Debug.Log(timeGap);
+		//Debug.Log(timeGap);
 	}
 	
 }
