@@ -1,9 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\StickmanController.js">
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="C:\submissions\semester2\2hnd2\ELAINE_CALLEJA_2HND2I\2ndsubmission\ELAINE_CALLEJA_2HND2I\ELAINE_CALLEJA_2HND2i\Assets\Script\HowToPlayButton.js">
     <Files>
-      <File FileName="Assets\Scripts\StickmanController.js" Line="45" Column="50" />
-      <File FileName="Assets\Scripts\obstacleGenerator.js" Line="52" Column="48" />
+      <File FileName="C:\submissions\semester2\2hnd2\ELAINE_CALLEJA_2HND2I\2ndsubmission\ELAINE_CALLEJA_2HND2I\ELAINE_CALLEJA_2HND2i\Assets\Script\HowToPlayButton.js" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -8,7 +8,7 @@ var stickmanPicture:Texture;
 
 var stickmanBullet:Rigidbody;
 
-var currentPlatform:Collider;
+var currentPlatform:GameObject;
 
 static var score:int=0;
 
@@ -27,9 +27,11 @@ function OnTriggerStay(theotherbox:Collider)
 {
 	if (theotherbox.tag == "ground")
 		{
+			//the stickman's feet have to be higher than the platform
+			if ((transform.position.y-2) >= theotherbox.transform.position.y)
+			{
 			onGround=true;
-	
-			currentPlatform = theotherbox;
+			}
 		}
 		
 }
@@ -39,18 +41,20 @@ function OnTriggerEnter(theotherbox:Collider){
 	
 	if (theotherbox.tag == "ground")
 	{
-		//what happens when the object hits the ground
-		onGround = true;
-		currentPlatform = theotherbox;
-		//hack not to fall through the side of the game
-		transform.position.y = currentPlatform.gameObject.transform.position.y+2.5;
-		
+		//the stickman's feet have to be higher than the platform
+		if ((transform.position.y-2) >= theotherbox.transform.position.y)
+		{
+		 //what happens when the object hits the ground
+		 onGround = true;
+		 //save the current platform
+		 currentPlatform = theotherbox.gameObject;
+		}
 	}
 
 	//only trigger when hit by obstacle
 	if (theotherbox.tag == "obstacle") {
 		//this is the code that happens when i get hit
-		//stickmanLives--;
+		stickmanLives--;
 		//destroy the obstacle
 		Destroy(theotherbox.gameObject);
 	}
@@ -101,6 +105,15 @@ function OnGUI() {
 	}
 	//this is the score showing how many boxes I have destroyed
 	GUI.Label(Rect(0,80,150,20),"Score: "+score);
+	
+	GUI.Label(Rect(0,100,150,20),"Stickman y: "+transform.position.y);
+	
+	GUI.Label(Rect(0,120,150,20),"Platform name: "+currentPlatform.name);
+	GUI.Label(Rect(0,140,150,20),"Platform y: "+currentPlatform.transform.position.y);
+	
+	//position of the stickman's feet.  Stickman is 2 units high
+	GUI.Label(Rect(0,160,150,20),"Stickman's feet: "+(transform.position.y-2));
+	
 }
 
 
@@ -109,26 +122,28 @@ function Start () {
 }
 
 function Update () {
-	//this will write stickman on ground true/false in 
-	//the console:
-	//Debug.Log("Stickman on Ground: "+onGround);
+	Debug.Log("Stickman feet: " + (transform.position.y - 2));
 	
 	
-	
-	
-	
-	
+	//set the x of the camera equal to the x of the stickman
 	Camera.main.transform.position.x = transform.position.x;
 	
-	//if I run out of lives
+	
+	//if I run out of lives, send the player to the game over screen
 	if (stickmanLives <= 0)
 	{
 		//Game Over - reset the game
-		Application.LoadLevel(0);
+		Application.LoadLevel(2);
+	}
+	
+	//if stickman falls out of screen, send the player to the game over screen
+	if (transform.position.y < -6.5)
+	{
+		Application.LoadLevel(2);
 	}
 	
 	//fake gravity
-	if (!onGround)
+	if (onGround == false)
 	{
 		transform.Translate(Vector3.down * 5 * Time.deltaTime);
 	}
