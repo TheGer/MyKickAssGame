@@ -55,6 +55,7 @@
      <Compile Include="Assets\Scripts\stickmanWave.js" />
      <Compile Include="Assets\fallingScript.js" />
      <Compile Include="Assets\gameOverScript.js" />
+     <Compile Include="Assets\mouseCubeController.js" />
      <Compile Include="Assets\startGameButtonScript.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
